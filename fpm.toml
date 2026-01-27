@@ -8,7 +8,7 @@ description = "Fortran 2018 ISO C binding interfaces to raylib"
 keywords = [ "graphics", "raylib" ]
 
 [build]
-link = [ "raylib", "glfw", "GL", "pthread", "m" ]
+link = ["raylib", "glfw3", "opengl32", "gdi32", "winmm", "user32", "shell32"]
 
 [library]
 source-dir = "src"
