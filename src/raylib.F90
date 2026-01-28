@@ -11,13 +11,13 @@ module raylib
     implicit none (type, external)
     private
 
-    #ifdef __INTEL_COMPILER
-        integer, parameter, public :: c_unsigned_int = c_int
-        integer, parameter, public :: c_unsigned_char = c_signed_char
-    #else
-        integer, parameter, public :: c_unsigned_int = c_unsigned
-        integer, parameter, public :: c_unsigned_char = c_unsigned_char
-    #endif
+#ifdef __INTEL_COMPILER
+    integer, parameter, public :: c_unsigned_int = c_int
+    integer, parameter, public :: c_unsigned_char = c_signed_char
+#else
+    integer, parameter, public :: c_unsigned_int = c_int
+    integer, parameter, public :: c_unsigned_char = c_signed_char
+#endif
 
     real, parameter, public :: PI = acos(-1.0)
 
@@ -48,8 +48,8 @@ module raylib
         real(kind=c_float) :: y = 0.0
         real(kind=c_float) :: z = 0.0
         real(kind=c_float) :: w = 0.0
-    end type quaternion_type
 
+    end type quaternion_type
     ! Matrix
     type, bind(c), public :: matrix_type
         real(kind=c_float) :: m0 = 0.0, m4 = 0.0,  m8 = 0.0, m12 = 0.0
@@ -63,7 +63,7 @@ module raylib
         integer(kind=c_unsigned_char) :: r = 0_c_unsigned_char
         integer(kind=c_unsigned_char) :: g = 0_c_unsigned_char
         integer(kind=c_unsigned_char) :: b = 0_c_unsigned_char
-        integer(kind=c_unsigned_char) :: a = 255_c_unsigned_char
+        integer(kind=c_unsigned_char) :: a = -1_c_unsigned_char
     end type color_type
 
     ! Rectangle
@@ -321,32 +321,32 @@ module raylib
         type(c_ptr)                  :: paths    = c_null_ptr !! char **
     end type file_path_list_type
 
-    type(color_type), parameter, public :: LIGHTGRAY  = color_type(200, 200, 200, 255)
-    type(color_type), parameter, public :: GRAY       = color_type(130, 130, 130, 255)
-    type(color_type), parameter, public :: DARKGRAY   = color_type( 80,  80,  80, 255)
-    type(color_type), parameter, public :: YELLOW     = color_type(253, 249,   0, 255)
-    type(color_type), parameter, public :: GOLD       = color_type(255, 203,   0, 255)
-    type(color_type), parameter, public :: ORANGE     = color_type(255, 161,   0, 255)
-    type(color_type), parameter, public :: PINK       = color_type(255, 109, 194, 255)
-    type(color_type), parameter, public :: RED        = color_type(230,  41,  55, 255)
-    type(color_type), parameter, public :: MAROON     = color_type(190,  33,  55, 255)
-    type(color_type), parameter, public :: GREEN      = color_type(  0, 228,  48, 255)
-    type(color_type), parameter, public :: LIME       = color_type(  0, 158,  47, 255)
-    type(color_type), parameter, public :: DARKGREEN  = color_type(  0, 117,  44, 255)
-    type(color_type), parameter, public :: SKYBLUE    = color_type(102, 191, 255, 255)
-    type(color_type), parameter, public :: BLUE       = color_type(  0, 121, 241, 255)
-    type(color_type), parameter, public :: DARKBLUE   = color_type(  0,  82, 172, 255)
-    type(color_type), parameter, public :: PURPLE     = color_type(200, 122, 255, 255)
-    type(color_type), parameter, public :: VIOLET     = color_type(135,  60, 190, 255)
-    type(color_type), parameter, public :: DARKPURPLE = color_type(112,  31, 126, 255)
-    type(color_type), parameter, public :: BEIGE      = color_type(211, 176, 131, 255)
-    type(color_type), parameter, public :: BROWN      = color_type(127, 106,  79, 255)
-    type(color_type), parameter, public :: DARKBROWN  = color_type( 76,  63,  47, 255)
-    type(color_type), parameter, public :: WHITE      = color_type(255, 255, 255, 255)
-    type(color_type), parameter, public :: BLACK      = color_type(  0,   0,   0, 255)
-    type(color_type), parameter, public :: BLANK      = color_type(  0,   0,   0,   0)
-    type(color_type), parameter, public :: MAGENTA    = color_type(255,   0, 255, 255)
-    type(color_type), parameter, public :: RAYWHITE   = color_type(245, 245, 245, 255)
+	type(color_type), parameter, public :: LIGHTGRAY  = color_type(-56, -56, -56, -1)
+	type(color_type), parameter, public :: GRAY       = color_type(-126, -126, -126, -1)
+	type(color_type), parameter, public :: DARKGRAY   = color_type( 80,  80,  80, -1)
+	type(color_type), parameter, public :: YELLOW     = color_type(-3, -7,   0, -1)
+	type(color_type), parameter, public :: GOLD       = color_type(-1, -53,   0, -1)
+	type(color_type), parameter, public :: ORANGE     = color_type(-1, -95,   0, -1)
+	type(color_type), parameter, public :: PINK       = color_type(-1, 109, -62, -1)
+	type(color_type), parameter, public :: RED        = color_type(-26,  41,  55, -1)
+	type(color_type), parameter, public :: MAROON     = color_type(-66,  33,  55, -1)
+	type(color_type), parameter, public :: GREEN      = color_type(  0, -28,  48, -1)
+	type(color_type), parameter, public :: LIME       = color_type(  0, -98,  47, -1)
+	type(color_type), parameter, public :: DARKGREEN  = color_type(  0, 117,  44, -1)
+	type(color_type), parameter, public :: SKYBLUE    = color_type(102, -65, -1, -1)
+	type(color_type), parameter, public :: BLUE       = color_type(  0, 121, -15, -1)
+	type(color_type), parameter, public :: DARKBLUE   = color_type(  0,  82, -84, -1)
+	type(color_type), parameter, public :: PURPLE     = color_type(-56, 122, -1, -1)
+	type(color_type), parameter, public :: VIOLET     = color_type(-121,  60, -66, -1)
+	type(color_type), parameter, public :: DARKPURPLE = color_type(112,  31, 126, -1)
+	type(color_type), parameter, public :: BEIGE      = color_type(-45, -80, -125, -1)
+	type(color_type), parameter, public :: BROWN      = color_type(127, 106,  79, -1)
+	type(color_type), parameter, public :: DARKBROWN  = color_type( 76,  63,  47, -1)
+	type(color_type), parameter, public :: WHITE      = color_type(-1, -1, -1, -1)
+	type(color_type), parameter, public :: BLACK      = color_type(  0,   0,   0, -1)
+	type(color_type), parameter, public :: BLANK      = color_type(  0,   0,   0,   0)
+	type(color_type), parameter, public :: MAGENTA    = color_type(-1,   0, -1, -1)
+	type(color_type), parameter, public :: RAYWHITE   = color_type(-11, -11, -11, -1)
 
     ! ConfigFlags
     integer(kind=c_int), parameter, public :: FLAG_VSYNC_HINT               = int(z'00000040')
