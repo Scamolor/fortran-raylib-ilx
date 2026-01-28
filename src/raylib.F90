@@ -11,14 +11,6 @@ module raylib
     implicit none (type, external)
     private
 
-#ifdef __INTEL_COMPILER
-    integer, parameter, public :: c_unsigned_int = c_int
-    integer, parameter, public :: c_unsigned_char = c_signed_char
-#else
-    integer, parameter, public :: c_unsigned_int = c_int
-    integer, parameter, public :: c_unsigned_char = c_signed_char
-#endif
-
     real, parameter, public :: PI = acos(-1.0)
 
     ! Vector2
