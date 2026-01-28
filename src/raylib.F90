@@ -10,6 +10,8 @@ module raylib
     use, intrinsic :: iso_c_binding
     implicit none (type, external)
     private
+    integer, parameter, public :: c_unsigned_int = c_int
+    integer, parameter, public :: c_unsigned_char = c_signed_char
 
     real, parameter, public :: PI = acos(-1.0)
 
